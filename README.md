@@ -51,3 +51,13 @@ npm run build
 ```
 
 Nishan works fully client-side in v0.1. Awaaz / Tainted / MIRAGE pages describe the module and their API routes return 501 until their workers land (Weeks 2-5, see ROADMAP.md).
+
+## Awaaz worker (Week 2)
+
+```bash
+cd workers/awaaz && pip install -r requirements.txt
+uvicorn app:app --port 8001   # needs universal_noise.pt from train_noise.py
+AWAAZ_WORKER_URL=http://localhost:8001 npm run dev
+```
+
+See workers/awaaz/README.md and RESULTS.md (Opus survival measured 2026-11-19).
