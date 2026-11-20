@@ -61,3 +61,13 @@ AWAAZ_WORKER_URL=http://localhost:8001 npm run dev
 ```
 
 See workers/awaaz/README.md and RESULTS.md (Opus survival measured 2026-11-19).
+
+## Tainted Video worker (Week 3)
+
+```bash
+cd workers/tainted && pip install -r requirements.txt
+uvicorn app:app --port 8002
+TAINTED_WORKER_URL=http://localhost:8002 npm run dev
+```
+
+See workers/tainted/README.md and RESULTS.md (recompression sweep 2026-11-19: period 24 / amplitude 16 defaults).
