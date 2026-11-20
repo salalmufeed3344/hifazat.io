@@ -34,3 +34,27 @@ matched attacks are needed.
 - Ensemble loss: ArcFace + FaceNet (+ CLIP later, IDGuardian-style).
 - Same budget: eps=8/255. Success = ArcFace cosine < 0.35 (different-person
   territory) at PSNR >= 35 dB.
+
+## Step 2b — 2026-11-20 (direct ArcFace attack, warp in loop): SUCCESS
+
+Setup: buffalo_l ArcFace ONNX converted to PyTorch via onnx2torch (parity vs
+ONNX runtime: cosine 1.000000). 5-point alignment warp inside the loop via
+grid_sample (parity vs harness embed: 0.9999 after pixel-center fix). PGD 200
+steps, eps=8/255, ensemble loss = ArcFace cosine + FaceNet cosine, face-masked.
+Runtime: 5m57s CPU. Test face: AI-generated fictional portrait.
+
+| Measurement | v1 (FaceNet only) | **Step 2b** |
+|---|---|---|
+| ArcFace cosine clean-vs-protected | 0.9892 | **-0.2886** |
+| PSNR | 45.36 dB | 43.71 dB |
+| SSIM | 0.9998 | 0.9997 |
+| Max pixel change | 9/255 | 9/255 |
+
+Success bar was ArcFace cosine < 0.35 (different-person territory, Step 1
+measured 0.2002) at PSNR >= 35 dB. **Passed with margin** — the protected
+photo's identity vector is now *farther* from the clean one than a different
+person's is, and the photo looks untouched (verified visually).
+
+Not yet measured (next steps): JPEG/WhatsApp robustness (Step 3), inswapper
+swap-output identity (Step 4), enhancer survival, more faces/skin tones,
+real photos. One generated face is a proof of mechanism, not a product claim.
