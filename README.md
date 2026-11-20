@@ -71,3 +71,10 @@ TAINTED_WORKER_URL=http://localhost:8002 npm run dev
 ```
 
 See workers/tainted/README.md and RESULTS.md (recompression sweep 2026-11-19: period 24 / amplitude 16 defaults).
+
+## Direction update (20 Nov 2026): invisible first
+
+Visible-pattern protection is rejected as product direction. Hifazat now targets
+imperceptible, model-internal defenses. Full research: RESEARCH-INVISIBLE.md.
+Starting point: ArcFace identity-embedding disruption (IDGuardian/Phantom-style),
+built and measured step by step. Nishan (proof) remains valid as-is.
