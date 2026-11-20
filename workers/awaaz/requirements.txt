@@ -1,9 +1,0 @@
-# Serving (app.py + protect.py)
-torch>=2.4
-numpy
-fastapi
-uvicorn
-python-multipart
-# Training only (train_noise.py) — not needed to serve:
-# speechbrain==1.0.0
-# torchaudio>=2.4
